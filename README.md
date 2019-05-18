@@ -62,7 +62,6 @@ Things you may want to cover:
 ## messages
 |Column|Type|Options|
 |------|----|-------|
-|post_id|integer|null: false,unique: true,foreign_key: true|
 |text|text||
 |pic|text||
 |user_id|integer|null: false, foreign_key: true|
@@ -71,7 +70,6 @@ Things you may want to cover:
 ### Association
 - belongs_to :group
 - belongs_to :user
-
 
 
 
