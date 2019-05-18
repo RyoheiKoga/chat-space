@@ -22,58 +22,58 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-##user
+## users
 |Column|Type|Options|
 |------|----|-------|
-|id|integer|null: false,unique: true|
 |name|string|null: false,unique: true|
 |e-mail|string|null: false,unique: true|
-|pass_1|string|null: false|
-|pass_2|string|null: false|
 
 ### Association
-- has_meny :tweets
+- has_many :messages
+- has_many :groups, through: :group_users
+- has_many :group_users
 
 
-##tweets
+
+## groups
 |Column|Type|Options|
 |------|----|-------|
-|post_id|integer|null: false,unique: true,foreign_key: true|
-|text|text|null: false|
-|pic|text||
+|name|string|null: false,unique: true|
 
 ### Association
-- belongs_to :group
-- belongs_to :user
-
-##group
-|Column|Type|Options|
-|------|----|-------|
-|id|integer|null: false,unique: true|
-|group_id|integer|null: false,foreign_key: true|
-
-### Association
-- has_meny :user
+- has_many :messages
+- has_many :users, through: :group_users
+- has_many :group_users
 
 
-##user_group
-|Column|Type|Options|
-|------|----|-------|
-|id|integer|null: false,unique: true|
-|group_id|integer|null: false,foreign_key: true|
 
-### Association
-- belongs_to :user
-- belongs_to :group
-
-
-## membersテーブル
-
+##users_groups
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+|group_id|integer|null: false,foreign_key: true|
+
+### Association
+- belongs_to :user
+- belongs_to :group
+
+
+
+## messages
+|Column|Type|Options|
+|------|----|-------|
+|post_id|integer|null: false,unique: true,foreign_key: true|
+|text|text||
+|pic|text||
+|user_id|integer|null: false, foreign_key: true|
+|group_id|integer|null: false,foreign_key: true|
 
 ### Association
 - belongs_to :group
 - belongs_to :user
+
+
+
+
+
+
