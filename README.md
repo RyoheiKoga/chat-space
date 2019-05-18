@@ -22,3 +22,56 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+## users
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false,unique: true|
+|e-mail|string|null: false,unique: true|
+
+### Association
+- has_many :messages
+- has_many :groups, through: :group_users
+- has_many :group_users
+
+
+
+## groups
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false,unique: true|
+
+### Association
+- has_many :messages
+- has_many :users, through: :group_users
+- has_many :group_users
+
+
+
+## users_groups
+|Column|Type|Options|
+|------|----|-------|
+|user_id|references|null: false, foreign_key: true|
+|group_id|references|null: false,foreign_key: true|
+
+### Association
+- belongs_to :user
+- belongs_to :group
+
+
+
+## messages
+|Column|Type|Options|
+|------|----|-------|
+|text|text||
+|pic|text||
+|user_id|references|null: false, foreign_key: true|
+|group_id|references|null: false,foreign_key: true|
+
+### Association
+- belongs_to :group
+- belongs_to :user
+
+
+
+
+
