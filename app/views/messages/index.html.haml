@@ -22,7 +22,7 @@
   .chat-main
     .main-header
       .main-header__left-box
-        %h2.main-header__left-box__current-group{"data-group_id" => "1002"}
+        %h2.main-header__left-box__current-group
           グループ名
         %ul.main-header__left-box__member-list
           Member：
@@ -31,7 +31,7 @@
         .main-header__edit-btn
           Edit
     .messages
-      .message{"data-message_id" => "2365"}
+      .message
         .message__upper-info
           %p.message__upper-info__talker
             ユーザー名
@@ -43,7 +43,7 @@
       %form.new_message.new_message{enctype: "multipart/form-data", method: "post"}
         .input-box
           %input.input-box__text{name: "message[content]", placeholder: "type a message", type: "text"}
-          %label.input-box__image{for: "message_image"}
+          %label.input-box__image{for: "message[image]"}
             %i.fa.fa-image
-            %input.input-box__image__file{name: "message[image]", type: "file"}
-        %input.submit-btn{"data-disable-with" => "Send", name: "commit", type: "submit", value: "Send"}
+            %input.input-box__image__file{id: "message[image]", type: "file"}
+        %input.submit-btn{name: "commit", type: "submit", value: "Send"}
