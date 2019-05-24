@@ -1,9 +1,17 @@
-@import "./reset";
-@import "./config/variable";
-@import "./modules/1_side-header";
+@import "font-awesome";
+@import "./config/colors";
+@import "./config/font-size";
+@import "./config/reset";
+@import "./mixins/mixin";
+@import "./mixins/vendor_prefix";
+
+
+@import "./modules/group";
+@import "./modules/flash";
+@import "./modules/0_index";
+@import "./modules/1_side-bar";
 @import "./modules/2_groups";
 @import "./modules/3_main-header";
 @import "./modules/4_messages";
 @import "./modules/5_form";
-
-@import "font-awesome";
+@import "./modules/user";
