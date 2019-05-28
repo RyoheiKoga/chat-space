@@ -1,9 +1,7 @@
 $(function () {
   function buildHTML(message){
     var content = message.content ? `${ message.content }` : "";
-    console.log(message.image.url)
     var image = message.image.url ? `<img src="${message.image.url}">` : "" ;
-    console.log(image)
     var html = `<div class="message">
                     <div class="upper-message">
                       <div class="upper-message__user-name">
@@ -42,11 +40,14 @@ $(function () {
     .done(function(data){
       var html = buildHTML(data);
       $('.messages').append(html).animate({scrollTop: $(".messages")[0].scrollHeight}, 'fast');
-      // $('.form').animate({scrollBottom: 0}, 'swing')
+      $('.form__message').val('')
+      $('#message_image').val('')
+      $('.form__submit').prop('disabled', false);
       })
 
     .fail(function(){
-      alert('error');
+      alert('投稿内容がありません');
+      $('.form__submit').prop('disabled', false);
     })
   })
 });
