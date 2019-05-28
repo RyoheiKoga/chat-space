@@ -40,14 +40,13 @@ $(function () {
     .done(function(data){
       var html = buildHTML(data);
       $('.messages').append(html).animate({scrollTop: $(".messages")[0].scrollHeight}, 'fast');
-      $('.form__message').val('')
-      $('#message_image').val('')
+      $('.new_message')[0].reset();
       $('.form__submit').prop('disabled', false);
       })
 
     .fail(function(){
       alert('投稿内容がありません');
-      $('.form__submit').prop('disabled', false);
+      // $('.form__submit').prop('disabled', false);
     })
   })
 });
