@@ -1,11 +1,12 @@
 .messages {
   background-color: #FAFAFA;
   box-sizing: border-box;
-  padding: 46px 40px;
+  padding: 46px 40px 0 46px;
   height: calc(100vh - 100px - 90px);
   overflow: auto;
 
   .message {
+    margin-bottom: 40px;
 
     .upper-message {
       display: flex;
@@ -26,10 +27,9 @@
     .lower-message {
       margin-top: 10px;
       
-      &__content {
+      &__image {
         color: $black;
         font-size: 14px;
-        margin-bottom: 40px;
       }
     }
   }
