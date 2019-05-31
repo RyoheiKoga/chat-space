@@ -46,7 +46,6 @@ $(function () {
 
     .fail(function(){
       alert('投稿内容がありません');
-      // $('.form__submit').prop('disabled', false);
     })
   })
 });
