@@ -2,24 +2,24 @@ $(function () {
   function buildHTML(message){
     var content = message.content ? `${ message.content }` : "";
     var image = message.image.url ? `<img src="${message.image.url}">` : "" ;
-    var html = `<div class="message">
-                    <div class="upper-message">
-                      <div class="upper-message__user-name">
-                        ${message.name}
-                      </div>
-                      <div class="upper-message__date">
-                        ${message.date}
-                      </div>
+    var html = `<div class="message" data-id="${message.id}">
+                  <div class="upper-message">
+                    <div class="upper-message__user-name">
+                      ${message.name}
                     </div>
-                    <div class="lower-meesage">
-                      <p class="lower-message__content">
-                        <div>
-                        ${content}
-                        </div>
-                        ${image}
-                      </p>
+                    <div class="upper-message__date">
+                      ${message.date}
                     </div>
-                </div>`
+                  </div>
+                  <div class="lower-meesage">
+                    <p class="lower-message__content">
+                      <div>
+                      ${content}
+                      </div>
+                      ${image}
+                    </p>
+                  </div>
+              </div>`
     return html;
   }
 
@@ -41,11 +41,38 @@ $(function () {
       var html = buildHTML(data);
       $('.messages').append(html).animate({scrollTop: $(".messages")[0].scrollHeight}, 'fast');
       $('.new_message')[0].reset();
-      $('.form__submit').prop('disabled', false);
       })
 
     .fail(function(){
       alert('投稿内容がありません');
     })
+
+    .always(function(data){
+      $('.form__submit').prop('disabled', false);
+    })
   })
+
+  var reloadMessages = function() {
+    if (location.href.match(/\/groups\/\d+\/messages/)) {
+      last_message_id = $('.message:last').data('id');
+        $.ajax({
+          url: 'api/messages',
+          type: 'get',
+          dataType: 'json',
+          data: {id: last_message_id}
+        })
+
+        .done(function(messages) {
+            messages.forEach(function(message){
+            var insertHTML = buildHTML(message);
+            $('.messages').append(insertHTML).animate({scrollTop: $(".messages")[0].scrollHeight}, 'fast');
+          })
+        })
+
+        .fail(function() {
+          alert('error');
+        });
+    };
+  }
+  setInterval(reloadMessages, 5000);
 });
